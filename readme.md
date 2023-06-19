@@ -22,6 +22,10 @@ The backend for our Dev Soc Project portal
 * before making prs make sure the tests are written for your code
 
 # Local Setup
+* if using docker then connect to mongo database by
+  ```bash
+  docker run --name mongodb -d -p 27017:27017 mongodb/mongodb-community-server:6.0-ubi8
+  ```
 
 # Documentation
 go to /docs endpoint of the api
