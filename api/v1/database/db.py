@@ -1,5 +1,5 @@
 from motor.motor_asyncio import AsyncIOMotorClient 
-from Config import Config
+from api.v1.Config import Config
 from beanie import init_beanie
 from .models import models
 

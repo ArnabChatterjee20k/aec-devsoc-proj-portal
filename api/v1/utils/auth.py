@@ -5,8 +5,8 @@ from typing import Any, Union
 import jwt
 from passlib.context import CryptContext
 
-from Config import Config
-from constants.status import FAIL
+from api.v1.Config import Config
+from api.v1.constants.status import FAIL
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
