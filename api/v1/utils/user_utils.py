@@ -1,17 +1,19 @@
 import secrets
 import string
 from api.v1.database.models import User
-from .auth import create_access_token, verify_password
+from .auth import create_access_token, verify_password, get_password_hash
 from fastapi import status, HTTPException
 from api.v1.Schemas.Profile import Profile, ProfileEdit
 
 
 async def register_user(user: dict) -> dict:
+    hashed_password = get_password_hash(user.get("password"))
+    user["password"] = hashed_password
     profile_id = generate_profile_id(user["name"])
     user["profile_id"] = profile_id
-    data = User(**user)
-    user_object = await User.insert_one(data)
-    return {"token": create_access_token({"email": user_object.email}), "profile_id": profile_id}
+    new_user = User(**user)
+    await new_user.save()
+    return {"token": create_access_token({"email": new_user.email}), "profile_id": profile_id}
 
 
 async def login_user(email, password) -> dict:

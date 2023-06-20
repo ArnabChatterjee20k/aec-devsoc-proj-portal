@@ -9,9 +9,7 @@ router = APIRouter()
 
 @router.post("/")
 async def register(user: Register = Depends(userExists)):
-    hashed_password = get_password_hash(user.password)
     user_data = user.dict()
-    user_data["password"] = hashed_password
 
     return await register_user(user_data)
 
