@@ -3,7 +3,7 @@ from api.v1.database.models.Project import Project
 from api.v1.database.models.User import User
 from beanie import PydanticObjectId
 from api.v1.utils.project_utils import create_project, get_all_projects, get_project_by_id, get_project_by_profile_id, get_project_of_a_user
-from api.v1.utils.user_utils import get_user_profile
+from api.v1.utils.user_utils import generate_profile_id
 from api.v1.utils.auth import decode_access_token
 from api.v1.database.db import init_db
 from api.v1.utils.user_utils import login_user
@@ -23,7 +23,7 @@ test_user_details = {
 async def test_create_project():
     await init_db()
     data = {
-        "owner_id": 12,
+        "owner_id": generate_profile_id(test_user_details.get("name")),
         "title": "Project A",
         "description": "This is project A",
         "links": {
