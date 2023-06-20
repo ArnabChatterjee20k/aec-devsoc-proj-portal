@@ -6,7 +6,7 @@ from bson import ObjectId, errors
 from fastapi import HTTPException, status
 
 
-async def create_project(owner: User, data: dict):
+async def create_project( data: dict):
     details = ProjectDetails(**data).dict()
     new_project = Project(**details)
     await new_project.save()
