@@ -45,8 +45,7 @@ async def edit_profile(email, profile_id, data: dict):
 
     if not user:
         raise HTTPException(status.HTTP_404_NOT_FOUND)
-    user.update({"$set": data})
-    print(user)
+    await user.update({"$set": data})
 
 
 def generate_profile_id(name):
