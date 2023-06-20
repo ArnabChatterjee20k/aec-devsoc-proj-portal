@@ -20,7 +20,7 @@ async def login_user(email, password) -> dict:
         hashed_password = user.password
         check = verify_password(password, hashed_password)
         if check:
-            return {"token": create_access_token({"id": user.email}), "profile_id": user.profile_id}
+            return {"token": create_access_token({"email": user.email}), "profile_id": user.profile_id}
         raise HTTPException(status.HTTP_400_BAD_REQUEST)
     raise HTTPException(status.HTTP_404_NOT_FOUND)
 

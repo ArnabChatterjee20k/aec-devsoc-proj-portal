@@ -1,2 +1,3 @@
 from .User import User
-models=[User]
+from .Project import Project
+models=[User,Project]
