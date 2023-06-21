@@ -13,7 +13,7 @@ async def create_project(data: dict):
 
 
 async def get_all_projects():
-    return await Project.find(fetch_links=True).project(ProjectDetails).to_list()
+    return await Project.find().project(ProjectDetails).to_list()
 
 
 async def get_project_by_id(id: PydanticObjectId):
