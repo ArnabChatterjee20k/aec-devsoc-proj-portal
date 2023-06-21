@@ -16,7 +16,6 @@ async def projects():
 
 @router.get("/:id")
 async def single_project(id: PydanticObjectId):
-    PydanticObjectId(**id)
     return await get_project_by_id(id)
 
 
@@ -33,5 +32,9 @@ async def register_project(data: tuple = Depends(isOwner)):
 
 @router.put("/:id", dependencies=[Depends(JWTBearer())])
 def update_project(id: PydanticObjectId, data: tuple = Depends(isOwner)):
-    PydanticObjectId(**id)
+    """NOt completed yet"""
     pass
+
+@router.get("/:id/contributors")
+def contributors(id:PydanticObjectId):
+    return None
