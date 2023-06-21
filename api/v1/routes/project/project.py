@@ -23,7 +23,7 @@ async def single_project(id: PydanticObjectId):
 @router.post("/create", dependencies=[Depends(JWTBearer())])
 async def register_project(data: tuple = Depends(isOwner)):
     user, details = data
-    proj_id = await create_project(owner=user, data=details)
+    proj_id = await create_project(data=details)
     response = {"message": "project_created"}
     if proj_id:
         return response
