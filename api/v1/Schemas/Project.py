@@ -14,6 +14,14 @@ class SourceLink(BaseModel):
     type: LinkType
 
 
+class Contributor(BaseModel):
+    name: Optional[str]
+    profile_id: Optional[str]
+    email: Optional[str]
+    profession: Optional[list[str]]
+    institution: Optional[str]
+
+
 class ProjectDetails(BaseModel):
     # alias is required to identify the _id
     id: Optional[PydanticObjectId] = Field(alias='_id')
@@ -22,5 +30,3 @@ class ProjectDetails(BaseModel):
     description: str
     links: SourceLink
     pinned: bool
-
-    # Contributors

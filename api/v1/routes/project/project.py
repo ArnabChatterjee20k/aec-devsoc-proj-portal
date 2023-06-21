@@ -3,7 +3,7 @@ from .ProjectOwnerSchema import ProjectOwnerSchema
 from api.v1.utils.JWTBearer import JWTBearer
 from api.v1.Schemas.Project import ProjectDetails
 from api.v1.dependencies.isOwner import isOwner
-from api.v1.utils.project_utils import create_project, get_all_projects, get_project_by_id
+from api.v1.utils.project_utils import create_project, get_all_projects, get_project_by_id, get_contributors, add_contributors
 from beanie import PydanticObjectId
 
 router = APIRouter()
@@ -35,6 +35,16 @@ def update_project(id: PydanticObjectId, data: tuple = Depends(isOwner)):
     """NOt completed yet"""
     pass
 
+
 @router.get("/:id/contributors")
-def contributors(id:PydanticObjectId):
-    return None
+async def contributors(id: PydanticObjectId):
+    return await get_contributors(id)
+
+
+@router.post("/:id/contributors", dependencies=[Depends(JWTBearer())])
+async def register_contributor(id: PydanticObjectId, token=Depends(JWTBearer())):
+    data = token.get("sub")
+    email = data.get("email")
+
+    await add_contributors(id, email)
+    return {"message": "Contributor added"}
