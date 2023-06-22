@@ -2,7 +2,7 @@ from beanie import Document, Link, PydanticObjectId
 from typing import Optional
 from pydantic import BaseModel
 from enum import Enum
-
+from .User import User
 
 class LinkType(str, Enum):
     website = "website"
@@ -21,4 +21,4 @@ class Project(Document):
     links: SourceLink
     pinned: bool
 
-    # Contributors
+    contributors : Optional[list[Link[User]]]

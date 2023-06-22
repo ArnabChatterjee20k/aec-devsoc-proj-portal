@@ -1,5 +1,4 @@
 from beanie import Document, Link , BackLink
-from .Project import Project
 from typing import Optional
 
 
@@ -11,6 +10,7 @@ class User(Document):
     institution: str
 
     password: str  # hashed()
+    
 
     # automatically created
     # contributed: Optional[Link[]]
