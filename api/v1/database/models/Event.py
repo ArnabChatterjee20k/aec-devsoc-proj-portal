@@ -1,7 +1,7 @@
-from beanie import  Link , Document
+from beanie import  Link , Document , PydanticObjectId
 from .User import User
 from typing import Optional , List
-from pydantic import BaseModel , HttpUrl
+from pydantic import BaseModel , HttpUrl , Field
 from datetime import date,time,datetime
 
 from api.v1.database.models.EventsParticipants import EventsParticipants
