@@ -13,7 +13,6 @@ pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 ALGORITHM = "HS256"
 
-
 def create_access_token(subject: Union[str, Any]) -> str:
     payload = {
         'exp': datetime.utcnow() + timedelta(days=Config.access_token_expire_days),
