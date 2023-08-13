@@ -14,7 +14,7 @@ class PublicProfile(str,Enum):
 class FieldPool(str,Enum):
     name = "name"
     team_name = "teamname"
-    links = "str"
+    links = "links"
     email = "email"
 
 

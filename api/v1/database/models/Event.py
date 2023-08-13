@@ -15,7 +15,8 @@ class Event(Document):
     end_time:str
     banner:HttpUrl
     details_fields : Optional[list[str]]
-    participants : Optional[list[Link[EventsParticipants]]]
+    winner : Optional[Link[User]]
+    participants : Optional[list[Link[EventsParticipants]]] = []
 
     # class Settings:
     #     bson_encoders = {
