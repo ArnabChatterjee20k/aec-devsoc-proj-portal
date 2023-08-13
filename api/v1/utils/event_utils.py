@@ -1,5 +1,6 @@
 from api.v1.database.models.Event import Event
 from api.v1.Schemas.Event import EventSchema , FieldPool
+from api.v1.Schemas.Profile import Profile
 from api.v1.Schemas.EventParticipant import EventsParticipantsSchema
 from api.v1.database.models.EventsParticipants import EventsParticipants
 
@@ -52,7 +53,7 @@ async def validate_participants(event:Event,data:EventsParticipantsSchema,user_i
             raise HTTPException(status.HTTP_400_BAD_REQUEST,detail="All fields not present")
 
 async def get_participants_by_id(event_id:str):
-    event = await get_event_by_id(event_id)
+    event = await get_event_by_id(event_id,get_nested_data=True)
     return event.participants
 
 async def get_winner_by_id(event_id:str):
